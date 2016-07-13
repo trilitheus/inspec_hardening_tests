@@ -1,0 +1,9 @@
+name: CIS-Controls
+title: Hardening tests based on CIS recommendations
+maintainer: trilitheus
+copyright: Alliantist Ltd
+copyright_email: susadmins@pam-it.com
+summary: Test-suite for CIS recommended hardening
+version: 0.0.1
+supports:
+  - os-family: centos

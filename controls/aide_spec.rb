@@ -10,6 +10,7 @@ control 'cis-aide-1.3.1' do
   end
 end
 
+## Need a good way to test this - could be in crontab or /etc/cron.d
 control 'cis-aide-1.3.2' do
   impact 1.0
   title 'Implement Periodic Execution of File Integrity'

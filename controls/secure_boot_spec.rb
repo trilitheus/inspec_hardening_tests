@@ -24,9 +24,10 @@ control 'cis-boot-1.5.2' do
   end
 end
 
+## TODO: We'll need get this one configured and tested
 control 'cis-boot-1.5.3' do
   impact 1.0
-  title ' Set Boot Loader Password'
+  title 'Set Boot Loader Password'
   desc "Requiring a boot password upon execution of the boot loader will prevent an unauthorized
         user from entering boot parameters or changing the boot partition. This prevents users
         from weakening security (e.g. turning off SELinux at boot time)."

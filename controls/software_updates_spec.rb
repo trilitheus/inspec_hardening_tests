@@ -1,3 +1,4 @@
+## RHN not in use as using Centos
 control 'cis-sw-1.2.1' do
   impact 1.0
   title 'Configure Connection to the RHN RPM Repositories'
@@ -33,6 +34,7 @@ control 'cis-sw-1.2.3' do
   end
 end
 
+## Not relevant at the moment due to using CentOS
 control 'cis-sw-1.2.4' do
   impact 0.1
   title 'Disable the rhnsd Daemon'

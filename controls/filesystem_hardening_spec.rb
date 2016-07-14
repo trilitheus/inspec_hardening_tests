@@ -24,7 +24,7 @@ control 'cis-fs-1.1.2' do
   tag filesystem: '/tmp'
 
   describe file('/etc/fstab') do
-    its('content') { should match %r{.*/tmp.*nodev.*} }
+    its('content') { should match(/.*\/tmp.*nodev.*/) }
   end
   describe mount('/tmp') do
     its('options') { should include 'nodev' }
@@ -39,7 +39,7 @@ control 'cis-fs-1.1.3' do
   tag filesystem: '/tmp'
 
   describe file('/etc/fstab') do
-    its('content') { should match %r{.*/tmp.*nosuid.*} }
+    its('content') { should match(/.*\/tmp.*nosuid.*/) }
   end
   describe mount('/tmp') do
     its('options') { should include 'nosuid' }
@@ -54,7 +54,7 @@ control 'cis-fs-1.1.4' do
   tag filesystem: '/tmp'
 
   describe file('/etc/fstab') do
-    its('content') { should match %r{.*/tmp.*noexec.*} }
+    its('content') { should match(/.*\/tmp.*noexec.*/) }
   end
   describe mount('/tmp') do
     its('options') { should include 'noexec' }
@@ -125,7 +125,7 @@ control 'cis-fs-1.1.10' do
   tag filesystem: '/home'
 
   describe file('/etc/fstab') do
-    its('content') { should match %r{.*/home.*nodev.*} }
+    its('content') { should match(/.*\/home.*nodev.*/) }
   end
   describe mount('/home') do
     its('options') { should include 'nodev' }

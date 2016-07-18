@@ -153,7 +153,7 @@ control 'cis-net-4.2.8' do
   under a denial of service attack."
   tag net: 'ipv4'
 
-  describe kernel_parameter('net.ipv4.conf.tcp_syncookies') do
+  describe kernel_parameter('net.ipv4.tcp_syncookies') do
     its('value') { should eq 1 }
   end
 end

@@ -160,7 +160,7 @@ end
 
 # TODO: control 'cis-net-4.3' - wireless networking
 
-control '4.4.2' do
+control 'cis-net-4.4.2' do
   impact 1.0
   title 'Disable IPv6'
   desc "If IPv6 is not to be used, it is recommended that it be disabled to reduce the attack surface

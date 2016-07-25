@@ -56,7 +56,7 @@ control 'cis-logging-5.2.3' do
         potential malicious activity cannot go undetected."
   tag logging: 'audit'
 
-  describe file('/etc/grub2/grub.cfg') do
+  describe file('/boot/grub2/grub.cfg') do
     its('content') { should match(/\s+linux.*audit=1/) }
   end
 end

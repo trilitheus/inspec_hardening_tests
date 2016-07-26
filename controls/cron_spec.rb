@@ -56,3 +56,128 @@ control 'cis-cron-6.1.4' do
     its('mode') { should eq 0600 }
   end
 end
+
+control 'cis-cron-6.1.5' do
+  impact 1.0
+  title 'Set User/Group Owner and Permission on /etc/cron.hourly'
+  desc "Granting write access to this directory for non-privileged users could provide them the
+        means for gaining unauthorized elevated privileges. Granting read access to this directory
+        could give an unprivileged user insight in how to gain elevated privileges or circumvent
+        auditing controls."
+  tag cron: 'permissions'
+
+  describe file('/etc/cron.hourly') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0700 }
+  end
+end
+
+control 'cis-cron-6.1.6' do
+  impact 1.0
+  title 'Set User/Group Owner and Permission on /etc/cron.daily'
+  desc "Granting write access to this directory for non-privileged users could provide them the
+        means for gaining unauthorized elevated privileges. Granting read access to this directory
+        could give an unprivileged user insight in how to gain elevated privileges or circumvent
+        auditing controls."
+  tag cron: 'permissions'
+
+  describe file('/etc/cron.daily') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0700 }
+  end
+end
+
+control 'cis-cron-6.1.7' do
+  impact 1.0
+  title 'Set User/Group Owner and Permission on /etc/cron.weekly'
+  desc "Granting write access to this directory for non-privileged users could provide them the
+        means for gaining unauthorized elevated privileges. Granting read access to this directory
+        could give an unprivileged user insight in how to gain elevated privileges or circumvent
+        auditing controls."
+  tag cron: 'permissions'
+
+  describe file('/etc/cron.weekly') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0700 }
+  end
+end
+
+control 'cis-cron-6.1.8' do
+  impact 1.0
+  title 'Set User/Group Owner and Permission on /etc/cron.monthly'
+  desc "Granting write access to this directory for non-privileged users could provide them the
+        means for gaining unauthorized elevated privileges. Granting read access to this directory
+        could give an unprivileged user insight in how to gain elevated privileges or circumvent
+        auditing controls."
+  tag cron: 'permissions'
+
+  describe file('/etc/cron.monthly') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0700 }
+  end
+end
+
+control 'cis-cron-6.1.9' do
+  impact 1.0
+  title 'Set User/Group Owner and Permission on /etc/cron.d'
+  desc "Granting write access to this directory for non-privileged users could provide them the
+        means for gaining unauthorized elevated privileges. Granting read access to this directory
+        could give an unprivileged user insight in how to gain elevated privileges or circumvent
+        auditing controls."
+  tag cron: 'permissions'
+
+  describe file('/etc/cron.d') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0700 }
+  end
+end
+
+control 'cis-cron-6.1.10' do
+  impact 1.0
+  title 'Restrict at Daemon'
+  desc "Granting write access to this directory for non-privileged users could provide them the
+        means to gain unauthorized elevated privileges. Granting read access to this directory
+        could give an unprivileged user insight in how to gain elevated privileges or circumvent
+        auditing controls. In addition, it is a better practice to create a white list of users who can
+        execute at jobs versus a blacklist of users who can't execute at jobs as a system
+        administrator will always know who can create jobs and does not have to worry about
+        remembering to add a user to the blacklist when a new user id is created."
+  tag cron: 'permissions'
+
+  describe file('/etc/at.allow') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0400 }
+    its('content') { should eq '' }
+  end
+
+  describe file('/etc/at.deny') do
+    it { should_not exist }
+  end
+end
+
+control 'cis-cron-6.1.11' do
+  impact 1.0
+  title 'Restrict at/cron to Authorized Users'
+  desc "On many systems, only the system administrator is authorized to schedule cron jobs. Using
+        the cron.allow file to control who can run cron jobs enforces this policy. It is easier to
+        manage an allow list than a deny list. In a deny list, you could potentially add a user ID to
+        the system and forget to add it to the deny files."
+  tag cron: 'permissions'
+
+  describe file('/etc/cron.allow') do
+    its('owner') { should eq 'root' }
+    its('group') { should eq 'root' }
+    its('mode') { should eq 0400 }
+    its('content') { should eq 'root' }
+  end
+
+  describe file('/etc/cron.deny') do
+    it { should_not exist }
+  end
+end

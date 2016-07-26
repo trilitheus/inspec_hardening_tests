@@ -69,7 +69,8 @@ control 'cis-sw-1.2.6' do
 
   verify_rpms = command('rpm -qVa | awk \'$2 != "c" { print $0}\'')
 
+  # We modify the permissions on the following files so we expect these anomalies
   describe verify_rpms do
-    its('stdout') { should eq '' }
+    its('stdout') { should match(%r{^.M.......\s+/etc/cron.daily\n.M.......\s+/etc/cron.hourly\n.M.......\s+/etc/cron.monthly\n.M.......\s+/etc/cron.weekly\n.M.......\s+/etc/cron.d\n.M.......\s+/etc/cron.daily\n.M.......\s+/etc/cron.hourly\n$}) }
   end
 end

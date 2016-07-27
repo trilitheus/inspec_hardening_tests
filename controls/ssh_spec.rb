@@ -63,7 +63,7 @@ control 'cis-ssh-6.2.5' do
   tag config: 'ssh'
 
   describe ssh_config('/etc/ssh/sshd_config') do
-    its('MaxAuthTries') { should eq 5 }
+    its('MaxAuthTries') { should eq '4' }
   end
 end
 
@@ -159,5 +159,30 @@ control 'cis-ssh-6.2.12' do
   describe ssh_config('/etc/ssh/sshd_config') do
     its('ClientAliveInterval') { should eq '300' }
     its('ClientAliveCountMax') { should eq '0' }
+  end
+end
+
+control 'cis-ssh-6.2.13' do
+  impact 1.0
+  title 'Limit Access via SSH'
+  desc "Restricting which users can remotely access the system via SSH will help ensure that only
+        authorized users access the system."
+  tag config: 'ssh'
+
+  describe ssh_config('/etc/ssh/sshd_config') do
+    its('AllowUsers') { should eq 'vagrant' }
+  end
+end
+
+control 'cis-ssh-6.2.14' do
+  impact 1.0
+  title 'Set SSH Banner'
+  desc "Banners are used to warn connecting users of the particular site's policy regarding
+        connection. Consult with your legal department for the appropriate warning banner for
+        your site."
+  tag config: 'ssh'
+
+  describe ssh_config('/etc/ssh/sshd_config') do
+    its('Banner') { should eq '/etc/issue' }
   end
 end

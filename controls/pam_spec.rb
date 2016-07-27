@@ -62,6 +62,6 @@ control 'cis-login-6.5' do
   tag config: 'su'
 
   describe file('/etc/pam.d/su') do
-    its('content') { should match(/^auth\s+required\s+pam_wheel.so/) }
+    its('content') { should match(/^auth\s+required\s+pam_wheel.so\s+use_uid$/) }
   end
 end

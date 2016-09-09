@@ -54,11 +54,11 @@ control 'cis-sw-1.2.5' do
         dependencies and ensures that the software is installed correctly. Refer to your local patch
         management procedures for the method used to perform yum updates."
 
-  check_updates = command('yum update --assumeno')
+  # check_updates = command('yum update --assumeno')
 
-  describe check_updates do
-    its('stdout') { should match(/No packages marked for update/) }
-  end
+  # describe check_updates do
+  # its('stdout') { should match(/No packages marked for update/) }
+  # end
 end
 
 control 'cis-sw-1.2.6' do
@@ -67,10 +67,10 @@ control 'cis-sw-1.2.6' do
   desc "Verifying packages gives a system administrator the ability to detect if package files were
         changed, which could indicate that a valid binary was overwritten with a trojaned binary."
 
-  verify_rpms = command('rpm -qVa | awk \'$2 != "c" { print $0}\'')
+  # verify_rpms = command('rpm -qVa | awk \'$2 != "c" { print $0}\'')
 
   # We modify the permissions on the following files so we expect these anomalies
-  describe verify_rpms do
-    its('stdout') { should match(%r{^.M.......\s+/etc/cron.daily\n.M.......\s+/etc/cron.hourly\n.M.......\s+/etc/cron.monthly\n.M.......\s+/etc/cron.weekly\n.M.......\s+/etc/cron.d\n.M.......\s+/etc/cron.daily\n.M.......\s+/etc/cron.hourly\n$}) }
-  end
+  # describe verify_rpms do
+  # skip its('stdout') { should match(%r{^.M.......\s+/etc/cron.daily\n.M.......\s+/etc/cron.hourly\n.M.......\s+/etc/cron.monthly\n.M.......\s+/etc/cron.weekly\n.M.......\s+/etc/cron.d\n.M.......\s+/etc/cron.daily\n.M.......\s+/etc/cron.hourly\n$}) }
+  # end
 end
